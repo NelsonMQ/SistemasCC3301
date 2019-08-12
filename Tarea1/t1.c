@@ -1,5 +1,6 @@
 #include <string.h>
 #include "t1.h"
+#include <stdlib.h>
 
 uint comprimir(uint *a, int nbits){
     int mask = ~(-1<<nbits);
