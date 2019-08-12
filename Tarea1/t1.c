@@ -38,3 +38,7 @@ void insertar(char *d, char *s){
         p3--;
     }
 }
+
+int main(){
+    return 0;
+}
