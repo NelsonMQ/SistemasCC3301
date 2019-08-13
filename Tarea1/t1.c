@@ -7,7 +7,7 @@ uint comprimir(uint *a, int nbits){
     int mask = ~(-1<<nbits);
     uint *p = a;
     uint u = 0;
-    int n = sizeof(uint);
+    int n = sizeof(uint)<<3;
     while(n>(nbits-1)){
         u = u|(mask & *p);
         p++;
