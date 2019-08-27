@@ -4,18 +4,24 @@
 
 int calzar(Nodo *a, Nodo **ppat){
     Nodo *b = *ppat;
+    //First case
     if(b==NULL){
         *ppat = a;
         return 1;
     }
+    //Second case
     if(a==NULL){
         return 0;
     }
+    //If the roots are different
     if(b->x!=a->x){
         return 0;
     }
+    //We need to know if the left nodo "calza"
     int i = calzar((*a).izq,&(**ppat).izq);
+    //We need to know if the right nodo "calza"
     int j = calzar((*a).der,&(**ppat).der);
+    //If both "calzan"
     if(i==1 && j==1){
         return 1;
     }
