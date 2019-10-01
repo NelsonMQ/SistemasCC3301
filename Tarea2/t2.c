@@ -17,9 +17,9 @@ int calzar(Nodo *a, Nodo **ppat){
     if(b->x!=a->x){
         return 0;
     }
-    //We need to know if the left nodo "calza"
+    //We need to know if the left node "calza"
     int i = calzar((*a).izq,&(**ppat).izq);
-    //We need to know if the right nodo "calza"
+    //We need to know if the right node "calza"
     int j = calzar((*a).der,&(**ppat).der);
     //If both "calzan"
     if(i==1 && j==1){
