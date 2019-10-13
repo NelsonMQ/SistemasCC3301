@@ -19,7 +19,8 @@ struct orden {
 ColaFifo *colaFifo;
 pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;
 pthread_cond_t cond = PTHREAD_COND_INITIALIZER;
-pthread_t t[8];
+pthread_t t[3];
+int n;
 
 /**
  * Funcion que se ocupa en el thread y representa a una impresora
@@ -51,6 +52,7 @@ void *t_imprimir(void *ptr){
  */
 void init_impr(Impr **imprs, int n_impr) {
     colaFifo = nuevaColaFifo();
+    n = n_impr;
     for(int i=0;i<n_impr;i++){
         pthread_create(&t[i],NULL,t_imprimir,imprs[i]);
     }
@@ -60,12 +62,10 @@ void init_impr(Impr **imprs, int n_impr) {
  * Entierra los threads que ocupaba cada impresora
  */
 void terminar_impr() {
-    int i = 0;
-    for(;;){
+    for(int i=0;i<n;i++){
         if(pthread_join(t[i],NULL)!=0){
             break;
         }
-        i++;
     }
 }
 
