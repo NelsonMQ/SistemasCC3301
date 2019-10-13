@@ -34,12 +34,11 @@ void *t_imprimir(void *ptr){
         }
         Orden *ord = extraer(colaFifo);
         pthread_mutex_unlock(&m);
-        pthread_cond_broadcast(&cond);
         imprimir(ord->doc, impr);
         pthread_mutex_lock(&m);
         ord->listo = 1;
-        pthread_mutex_unlock(&m);
         pthread_cond_broadcast(&cond);
+        pthread_mutex_unlock(&m);
         if(vacia(colaFifo)){
             break;
         }
