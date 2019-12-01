@@ -51,6 +51,7 @@ void *t_imprimir(void *ptr){
  */
 void init_impr(Impr **imprs, int n_impr) {
     colaFifo = nuevaColaFifo();
+    pthread_t t[n_impr];
     n = n_impr;
     for(int i=0;i<n_impr;i++){
         pthread_create(&t[i],NULL,t_imprimir,imprs[i]);
@@ -62,9 +63,7 @@ void init_impr(Impr **imprs, int n_impr) {
  */
 void terminar_impr() {
     for(int i=0;i<n;i++){
-        if(pthread_join(t[i],NULL)!=0){
-            break;
-        }
+        pthread_join(t[i],NULL);
     }
 }
 
